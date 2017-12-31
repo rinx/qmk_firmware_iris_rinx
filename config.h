@@ -31,6 +31,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define MASTER_RIGHT
 // #define EE_HANDS
 
+#undef RGB_DI_PIN
+#define RGB_DI_PIN D5
+
 #undef RGBLED_NUM
 #define RGBLIGHT_ANIMATIONS
 #define RGBLED_NUM 12
@@ -39,3 +42,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLIGHT_VAL_STEP 8
 
 #endif
+
+#ifdef PS2_USE_INT
+#define PS2_CLOCK_PORT  PORTD
+#define PS2_CLOCK_PIN   PIND
+#define PS2_CLOCK_DDR   DDRD
+#define PS2_CLOCK_BIT   3
+#define PS2_DATA_PORT   PORTC
+#define PS2_DATA_PIN    PINC
+#define PS2_DATA_DDR    DDRC
+#define PS2_DATA_BIT    6
+
+#define PS2_INT_INIT()  do {    \
+    EICRA |= ((1<<ISC30) |      \
+              (0<<ISC21));      \
+} while (0)
+#define PS2_INT_ON()  do {      \
+    EIMSK |= (1<<INT3);         \
+} while (0)
+#define PS2_INT_OFF() do {      \
+    EIMSK &= ~(1<<INT3);        \
+} while (0)
+#define PS2_INT_VECT   INT3_vect
+#endif
+
