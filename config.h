@@ -41,6 +41,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLIGHT_SAT_STEP 8
 #define RGBLIGHT_VAL_STEP 8
 
+#undef MOUSEKEY_INTERVAL
+#define MOUSEKEY_INTERVAL 0
+
+#undef MOUSEKEY_TIME_TO_MAX
+#define MOUSEKEY_TIME_TO_MAX 150
+
+#undef MOUSEKEY_MAX_SPEED
+#define MOUSEKEY_MAX_SPEED 3
+
+#undef MOUSEKEY_MOVE_DELTA
+#define MOUSEKEY_MOVE_DELTA 5
+
+#undef MOUSEKEY_DELAY
+#define MOUSEKEY_DELAY 0
+
+#undef TAPPING_TERM
+#define TAPPING_TERM 200
+
+#define TAPPING_TOGGLE  1
+
+#define PERMISSIVE_HOLD
+
 #endif
 
 #ifdef PS2_USE_INT
