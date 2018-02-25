@@ -63,6 +63,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define PERMISSIVE_HOLD
 
+#define BACKLIGHT_BREATHING
+
 #endif
 
 #ifdef PS2_USE_INT
