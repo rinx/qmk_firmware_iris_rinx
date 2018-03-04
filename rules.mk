@@ -23,4 +23,3 @@ ifndef QUANTUM_DIR
 	include ../../../../Makefile
 endif
 
-include $(TMK_DIR)/protocol.mk
