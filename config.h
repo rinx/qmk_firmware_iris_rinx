@@ -28,8 +28,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* Select hand configuration */
 
 // #define MASTER_LEFT
-#define MASTER_RIGHT
-// #define EE_HANDS
+// #define MASTER_RIGHT
+#define EE_HANDS
 
 #undef RGB_DI_PIN
 #define RGB_DI_PIN D5
