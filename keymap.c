@@ -66,14 +66,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.,-----------------------------------------.
  * | Tab  |   Q  |   W  |   E  |   R  |   T  ||   Y  |   U  |   I  |   O  |   P  |  \   |
  * |------+------+------+------+------+------||------O------+------+------+------+------|
- * |      |      |      |      |      |      ||      |      |      |      |   ;  |  '   |
+ * |TD_SPL|      |      |      |      |      ||      |      |      |      |   ;  |  '   |
  * | Ctrl |   A  |   S  |   D  |   F  |   G  ||   H  |   J  |   K  |   L  | Arrow| Ctrl |
  * |------+------+------+------+------+------||------+------+------+------+------+------|
  * |  [   |   Z  |      |      |      |      ||      |      |      |      |   /  |   ]  |
  * | Shift| Raise|   X  |   C  |   V  |   B  ||   N  |   M  |   ,  |   .  | Lower| Shift|
  * |------+------+------+------+------+------||------+------+------+------+------+------|
- * |      | Left |      |      |      |      ||      |      |TD_PWK|TD_NWK| Right|      |
- * |Adjust| Func | Alt  |DMPLY1|DMPLY2|SPTLGT|| Lclk | Rclk |   (  |   )  | Func | Arrow|
+ * | Left | Right|      |      |      |      ||      |      |TD_PWK|TD_NWK| Down |  Up  |
+ * |Adjust| Func | Alt  |DMPLY1|DMPLY2| M C/P|| Lclk | Rclk |   (  |   )  | Func | Arrow|
  * `------+------+------+------+------+------||------+------+------+------+------+------'
  *                      |      |      | BS   || Esc  |      |      |
  *                      | GUI  |Space | Lower|| Raise| Enter|MSNCTL|
@@ -81,13 +81,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_QWERTY] = KEYMAP( \
   KC_TAB,  KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BSLS, \
-  KC_LCTL, KC_A, KC_S, KC_D, KC_F, KC_G,
+  TD(TD_CTL_SPL), KC_A, KC_S, KC_D, KC_F, KC_G,
   KC_H, KC_J, KC_K, KC_L, LT(_ARROW, KC_SCLN), CTL_T(KC_QUOT), \
   SFT_T(KC_LBRC), LT(_RAISE, KC_Z), KC_X, KC_C, KC_V, KC_B, \
   KC_N, KC_M, KC_COMM, KC_DOT, LT(_LOWER, KC_SLSH), SFT_T(KC_RBRC), \
-  TT(_ADJUST), LT(_FUNCT, KC_LEFT), KC_LALT, DYN_MACRO_PLAY1, DYN_MACRO_PLAY2, SPTLGHT, \
+  LT(_ADJUST, KC_LEFT), LT(_FUNCT, KC_RGHT), KC_LALT, DYN_MACRO_PLAY1, DYN_MACRO_PLAY2, M(MAC_COPY_PASTE), \
   KC_TRNS, KC_TRNS, \
-  KC_BTN1, KC_BTN2, TD(TD_PRN_PREVWK), TD(TD_PRN_NEXTWK), LT(_FUNCT, KC_RGHT), TT(_ARROW), \
+  KC_BTN1, KC_BTN2, TD(TD_PRN_PREVWK), TD(TD_PRN_NEXTWK), LT(_FUNCT, KC_DOWN), LT(_ARROW, KC_UP), \
   KC_LGUI, KC_SPC, LT(_LOWER, KC_BSPC), LT(_RAISE, KC_ESC), KC_ENT, MISSIONCTL \
 ),
 
@@ -95,9 +95,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.,-----------------------------------------.
  * |   ~  |   !  |   @  |   #  |   $  |   %  ||   ^  |   &  |   *  |   (  |   )  | Bksp |
  * |------+------+------+------+------+------||------O------+------+------+------+------|
- * |      |      |      |      |      |      ||      |   _  |   +  |   {  |   }  | Del  |
+ * |      |      |      |      |M FIND|      ||      |   _  |   +  |   {  |   }  | Del  |
  * |------+------+------+------+------+------||------+------+------+------+------+------|
- * |      |      |      |      |      |      ||      |      |      |      |XXXXXX|      |
+ * |      |M UNDO|M CUT |M COPY|MPASTE|      ||      |      |      |      |XXXXXX|      |
  * |------+------+------+------+------+------||------+------+------+------+------+------|
  * |      |      |      |      |      |      ||      |      |      |      |      |      |
  * `------+------+------+------+------+------||------+------+------+------+------+------'
@@ -106,8 +106,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LOWER] = KEYMAP( \
   KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC, \
-  _______, _______, _______, _______, _______, _______, _______, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_DEL, \
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+  _______, _______, _______, _______, MACFIND, _______, _______, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_DEL, \
+  _______, MACUNDO, MACCUT,  MACCOPY, MACPASTE, _______, _______, _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______, \
   KC_TRNS, KC_TRNS, \
   _______, _______, _______, _______, _______, _______, \
@@ -118,9 +118,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.,-----------------------------------------.
  * |   `  |   1  |   2  |   3  |   4  |   5  ||   6  |   7  |   8  |   9  |   0  | Bksp |
  * |------+------+------+------+------+------||------O------+------+------+------+------|
- * |      |      |      |      |      |      ||      |   -  |   =  |   [  |   ]  | Del  |
+ * |      |      |      |      |M FIND|      ||      |   -  |   =  |   [  |   ]  | Del  |
  * |------+------+------+------+------+------||------+------+------+------+------+------|
- * |      |XXXXXX|      |      |      |      ||      |      |      |      |      |      |
+ * |      |XXXXXX|M CUT |M COPY|MPASTE|      ||      |      |      |      |      |      |
  * |------+------+------+------+------+------||------+------+------+------+------+------|
  * |      |      |      |      |      |      ||      |      |      |      |      |      |
  * `------+------+------+------+------+------||------+------+------+------+------+------'
@@ -129,8 +129,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_RAISE] = KEYMAP( \
   KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC, \
-  _______, _______, _______, _______, _______, _______, _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_DEL, \
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+  _______, _______, _______, _______, MACFIND, _______, _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_DEL, \
+  _______, _______, MACCUT,  MACCOPY, MACPASTE, _______, _______, _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______, \
   KC_TRNS, KC_TRNS, \
   _______, _______, _______, _______, _______, _______, \
