@@ -25,6 +25,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define USE_SERIAL
 #define USE_I2C
 
+#ifdef USE_I2C
+#define SSD1306OLED
+#endif
+
 /* Select hand configuration */
 
 // #define MASTER_LEFT
