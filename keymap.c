@@ -15,24 +15,17 @@ extern keymap_config_t keymap_config;
 #define KC_ KC_TRNS
 #define _______ KC_TRNS
 
-#define NEXTWKS ACTION_MODS_KEY(MOD_LCTL, KC_RGHT)
-#define PREVWKS ACTION_MODS_KEY(MOD_LCTL, KC_LEFT)
-#define NEXTTAB ACTION_MODS_KEY(MOD_LGUI, KC_RCBR)
-#define PREVTAB ACTION_MODS_KEY(MOD_LGUI, KC_LCBR)
+#define WINUNDO ACTION_MODS_KEY(MOD_LCTL, KC_Z)
+#define WINCUT ACTION_MODS_KEY(MOD_LCTL, KC_X)
 #define WINCOPY ACTION_MODS_KEY(MOD_LCTL, KC_C)
 #define WINPASTE ACTION_MODS_KEY(MOD_LCTL, KC_V)
+#define WINFIND ACTION_MODS_KEY(MOD_LCTL, KC_F)
 #define MACUNDO ACTION_MODS_KEY(MOD_LGUI, KC_Z)
 #define MACCUT ACTION_MODS_KEY(MOD_LGUI, KC_X)
 #define MACCOPY ACTION_MODS_KEY(MOD_LGUI, KC_C)
 #define MACPASTE ACTION_MODS_KEY(MOD_LGUI, KC_V)
 #define MACFIND ACTION_MODS_KEY(MOD_LGUI, KC_F)
-#define SPTLGHT ACTION_MODS_KEY(MOD_LGUI, KC_SPC)
-#define MISSIONCTL ACTION_MODS_KEY(MOD_LCTL, KC_UP)
-#define NEXTAPP ACTION_MODS_KEY(MOD_LGUI, KC_TAB)
-#define PREVAPP ACTION_MODS_KEY(MOD_LGUI | MOD_LSFT, KC_TAB)
-
-#define SCR_BR_UP KC_PAUS
-#define SCR_BR_DOWN KC_SLCK
+#define ROFI ACTION_MODS_KEY(MOD_LGUI, KC_D)
 
 // macros
 #define SEND_KEYMAP_URI 0
@@ -41,9 +34,7 @@ extern keymap_config_t keymap_config;
 
 // TAP DANCE
 enum {
-    TD_CTL_SPL = 0,
-    TD_PRN_PREVWK,
-    TD_PRN_NEXTWK
+    TD_CTL_ROFI = 0
 };
 
 enum custom_keycodes {
@@ -66,38 +57,38 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.,-----------------------------------------.
  * | Tab  |   Q  |   W  |   E  |   R  |   T  ||   Y  |   U  |   I  |   O  |   P  |  \   |
  * |------+------+------+------+------+------||------O------+------+------+------+------|
- * |TD_SPL|      |      |      |      |      ||      |      |      |      |   ;  |  '   |
+ * |TD_ROF|      |      |      |      |      ||      |      |      |      |   ;  |  '   |
  * | Ctrl |   A  |   S  |   D  |   F  |   G  ||   H  |   J  |   K  |   L  | Arrow| Ctrl |
  * |------+------+------+------+------+------||------+------+------+------+------+------|
  * |  [   |   Z  |      |      |      |      ||      |      |      |      |   /  |   ]  |
  * | Shift| Raise|   X  |   C  |   V  |   B  ||   N  |   M  |   ,  |   .  | Lower| Shift|
  * |------+------+------+------+------+------||------+------+------+------+------+------|
- * | Left | Right|      |      |      |      ||      |      |TD_PWK|TD_NWK| Down |  Up  |
- * |Adjust| Func | Alt  |DMPLY1|DMPLY2| M C/P|| Lclk | Rclk |   (  |   )  | Func | Arrow|
+ * | Left | Right|      |      |      |      ||      |      |      |      | Down |  Up  |
+ * |Adjust| Func | Alt  |DMPLY1|DMPLY2| W C/P|| Lclk | Rclk |   (  |   )  | Func | Arrow|
  * `------+------+------+------+------+------||------+------+------+------+------+------'
  *                      |      |      | BS   || Esc  |      |      |
- *                      | GUI  |Space | Lower|| Raise| Enter|MSNCTL|
+ *                      | GUI  |Space | Lower|| Raise| Enter| GUI  |
  *                      `--------------------'`--------------------'
  */
 [_QWERTY] = LAYOUT( \
   KC_TAB,  KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BSLS, \
-  TD(TD_CTL_SPL), KC_A, KC_S, KC_D, KC_F, KC_G,
+  TD(TD_CTL_ROFI), KC_A, KC_S, KC_D, KC_F, KC_G,
   KC_H, KC_J, KC_K, KC_L, LT(_ARROW, KC_SCLN), CTL_T(KC_QUOT), \
   SFT_T(KC_LBRC), LT(_RAISE, KC_Z), KC_X, KC_C, KC_V, KC_B, \
   KC_N, KC_M, KC_COMM, KC_DOT, LT(_LOWER, KC_SLSH), SFT_T(KC_RBRC), \
-  LT(_ADJUST, KC_LEFT), LT(_FUNCT, KC_RGHT), KC_LALT, DYN_MACRO_PLAY1, DYN_MACRO_PLAY2, M(MAC_COPY_PASTE), \
+  LT(_ADJUST, KC_LEFT), LT(_FUNCT, KC_RGHT), KC_LALT, DYN_MACRO_PLAY1, DYN_MACRO_PLAY2, M(WIN_COPY_PASTE), \
   KC_TRNS, KC_TRNS, \
-  KC_BTN1, KC_BTN2, TD(TD_PRN_PREVWK), TD(TD_PRN_NEXTWK), LT(_FUNCT, KC_DOWN), LT(_ARROW, KC_UP), \
-  KC_LGUI, KC_SPC, LT(_LOWER, KC_BSPC), LT(_RAISE, KC_ESC), KC_ENT, MISSIONCTL \
+  KC_BTN1, KC_BTN2, KC_LPRN, KC_RPRN, LT(_FUNCT, KC_DOWN), LT(_ARROW, KC_UP), \
+  KC_LGUI, KC_SPC, LT(_LOWER, KC_BSPC), LT(_RAISE, KC_ESC), KC_ENT, KC_RGUI \
 ),
 
 /* Lower
  * ,-----------------------------------------.,-----------------------------------------.
  * |   ~  |   !  |   @  |   #  |   $  |   %  ||   ^  |   &  |   *  |   (  |   )  | Bksp |
  * |------+------+------+------+------+------||------O------+------+------+------+------|
- * |      |      |      |      |M FIND|      ||      |   _  |   +  |   {  |   }  | Del  |
+ * |      |      |      |      |W FIND|      ||      |   _  |   +  |   {  |   }  | Del  |
  * |------+------+------+------+------+------||------+------+------+------+------+------|
- * |      |M UNDO|M CUT |M COPY|MPASTE|      ||      |      |      |      |XXXXXX|      |
+ * |      |W UNDO|W CUT |W COPY|WPASTE|      ||      |      |      |      |XXXXXX|      |
  * |------+------+------+------+------+------||------+------+------+------+------+------|
  * |      |      |      |      |      |      ||      |      |      |      |      |      |
  * `------+------+------+------+------+------||------+------+------+------+------+------'
@@ -106,8 +97,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LOWER] = LAYOUT( \
   KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC, \
-  _______, _______, _______, _______, MACFIND, _______, _______, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_DEL, \
-  _______, MACUNDO, MACCUT,  MACCOPY, MACPASTE, _______, _______, _______, _______, _______, _______, _______, \
+  _______, _______, _______, _______, WINFIND, _______, _______, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_DEL, \
+  _______, WINUNDO, WINCUT,  WINCOPY, WINPASTE, _______, _______, _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______, \
   KC_TRNS, KC_TRNS, \
   _______, _______, _______, _______, _______, _______, \
@@ -118,9 +109,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.,-----------------------------------------.
  * |   `  |   1  |   2  |   3  |   4  |   5  ||   6  |   7  |   8  |   9  |   0  | Bksp |
  * |------+------+------+------+------+------||------O------+------+------+------+------|
- * |      |      |      |      |M FIND|      ||      |   -  |   =  |   [  |   ]  | Del  |
+ * |      |      |      |      |W FIND|      ||      |   -  |   =  |   [  |   ]  | Del  |
  * |------+------+------+------+------+------||------+------+------+------+------+------|
- * |      |XXXXXX|M CUT |M COPY|MPASTE|      ||      |      |      |      |      |      |
+ * |      |XXXXXX|W CUT |W COPY|WPASTE|      ||      |      |      |      |      |      |
  * |------+------+------+------+------+------||------+------+------+------+------+------|
  * |      |      |      |      |      |      ||      |      |      |      |      |      |
  * `------+------+------+------+------+------||------+------+------+------+------+------'
@@ -129,8 +120,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_RAISE] = LAYOUT( \
   KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC, \
-  _______, _______, _______, _______, MACFIND, _______, _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_DEL, \
-  _______, _______, MACCUT,  MACCOPY, MACPASTE, _______, _______, _______, _______, _______, _______, _______, \
+  _______, _______, _______, _______, WINFIND, _______, _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_DEL, \
+  _______, _______, WINCUT,  WINCOPY, WINPASTE, _______, _______, _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______, \
   KC_TRNS, KC_TRNS, \
   _______, _______, _______, _______, _______, _______, \
@@ -142,9 +133,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.,-----------------------------------------.
  * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  ||  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |
  * |------+------+------+------+------+------||------O------+------+------+------+------|
- * |      |SCBRI+|      |M COPY|MPASTE|SPTLGT||MSNCTL|DMPLY1|DMREC1|DMSTOP|Vol + |Vol mt|
+ * |      |      |      |W COPY|WPASTE| ROFI ||      |DMPLY1|DMREC1|DMSTOP|      |      |
  * |------+------+------+------+------+------||------+------+------+------+------+------|
- * |      |SCBRI-|      |W COPY|WPASTE|PREVWK||NEXTWK|DMPLY2|DMREC2|KEYMAP|Vol - |      |
+ * |      |      |      |M COPY|MPASTE|      ||      |DMPLY2|DMREC2|KEYMAP|      |      |
  * |------+------+------+------+------+------||------+------+------+------+------+------|
  * |      |XXXXXX|      |DMREC1|DMREC2|      ||      |      |      |      |XXXXXX|      |
  * `------+------+------+------+------+------||------+------+------+------+------+------'
@@ -153,10 +144,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_FUNCT] = LAYOUT( \
   KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, \
-  _______, SCR_BR_UP, _______, MACCOPY, MACPASTE, SPTLGHT, \
-  MISSIONCTL, DYN_MACRO_PLAY1, DYN_REC_START1, DYN_REC_STOP, KC_VOLU, KC_MUTE, \
-  _______, SCR_BR_DOWN, _______, WINCOPY, WINPASTE, PREVWKS, \
-  NEXTWKS, DYN_MACRO_PLAY2, DYN_REC_START2, M(SEND_KEYMAP_URI), KC_VOLD, _______, \
+  _______, _______, _______, WINCOPY, WINPASTE, ROFI, \
+  _______, DYN_MACRO_PLAY1, DYN_REC_START1, DYN_REC_STOP, _______, _______, \
+  _______, _______, _______, MACCOPY, MACPASTE, _______, \
+  _______, DYN_MACRO_PLAY2, DYN_REC_START2, M(SEND_KEYMAP_URI), _______, _______, \
   _______, _______, DYN_REC_START1, DYN_REC_START2, _______, _______, \
   KC_TRNS, KC_TRNS, \
   _______, _______, _______, _______, _______, _______, \
@@ -269,9 +260,7 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 
 //Tap Dance Definitions
 qk_tap_dance_action_t tap_dance_actions[] = {
-  [TD_CTL_SPL] = ACTION_TAP_DANCE_DOUBLE(KC_LCTL, SPTLGHT),
-  [TD_PRN_PREVWK] = ACTION_TAP_DANCE_DOUBLE(KC_LPRN, PREVWKS),
-  [TD_PRN_NEXTWK] = ACTION_TAP_DANCE_DOUBLE(KC_RPRN, NEXTWKS)
+  [TD_CTL_ROFI] = ACTION_TAP_DANCE_DOUBLE(KC_LCTL, ROFI)
 };
 
 void persistent_default_layer_set(uint16_t default_layer) {
